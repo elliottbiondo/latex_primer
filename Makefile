@@ -8,6 +8,8 @@ examples/gravity.pdf: examples/gravity.tex
 	cd examples; bibtex gravity
 	pdflatex -aux-directory=examples -output-directory=examples examples/gravity.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/gravity.tex
+examples/figure.pdf: examples/figure.tex
+	pdflatex -aux-directory=examples -output-directory=examples examples/figure.tex
 examples/table.pdf: examples/table.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/table.tex
 examples/math.pdf: examples/math.tex
@@ -21,7 +23,7 @@ examples/hello_world.pdf: examples/hello_world.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/hello_world.tex
 examples/hello_world2.pdf: examples/hello_world2.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/hello_world2.tex
-$(name).pdf: refs.bib $(TEX) $(PDF) $(PNG) examples/hello_world.pdf examples/hello_world2.pdf examples/lists.pdf examples/lists2.pdf examples/math.pdf examples/table.pdf examples/gravity.pdf
+$(name).pdf: refs.bib $(TEX) $(PDF) $(PNG) examples/hello_world.pdf examples/hello_world2.pdf examples/lists.pdf examples/lists2.pdf examples/math.pdf examples/table.pdf examples/gravity.pdf examples/figure.pdf
 	pdflatex ${name}.tex
 	bibtex ${name}
 	pdflatex ${name}.tex

@@ -202,7 +202,7 @@ lists.tex:
 \begin{columns}[T]
 \column{0.5\textwidth}
 lists2.tex:
-\lstinputlisting[language=myTeX, frame=single, firstline=6, lastline=15, firstnumber=6]{examples/lists2.tex}
+\lstinputlisting[language=myTeX, frame=single, firstline=6, lastline=16, firstnumber=6]{examples/lists2.tex}
 \column{0.05\textwidth}
 \vspace{3cm}
 \arrowright
@@ -231,6 +231,23 @@ Note that \texttt{\textbackslash label} works with equations, tables, figures, c
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
+\frametitle{Figures}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+figure.tex:
+\lstinputlisting[language=myTeX, frame=single, firstline=1, lastline=20, firstnumber=1]{examples/figure.tex}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/figure.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
 \frametitle{Tables}
 
 \begin{columns}[T]
@@ -245,6 +262,7 @@ table.tex:
 \vspace{0.5cm}
 \end{columns}
 \end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{References}
@@ -267,6 +285,8 @@ refs.bib:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Beamer}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
