@@ -31,7 +31,7 @@ keywordstyle=\color[rgb]{0,0,1},                    % keywords
 
 \lstdefinelanguage{myTeX}{
   language=TeX,
-  morekeywords={begin, frac, end, ref, item, label, hline, cite, author, title, year, bibliographystyle, bibliography},
+  morekeywords={begin, frac, end, ref, item, label, hline, cite, author, title, year, bibliographystyle, bibliography, column, documentclass, usetheme, @book},
   morecomment=[l]{\%},
   sensitive=true
 }
@@ -284,6 +284,38 @@ refs.bib:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Beamer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Beamer Hello World!}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+beamer\_hello.tex:
+\lstinputlisting[language=myTeX, frame=single]{examples/beamer_hello.tex}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/beamer_hello.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Columns}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+columns.tex:
+\lstinputlisting[language=myTeX, frame=single, firstline=4, lastline=14, firstnumber=4]{examples/columns.tex}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/columns.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
