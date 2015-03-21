@@ -1,0 +1,276 @@
+\documentclass[12pt]{beamer}
+ 
+\usetheme[white,sections]{Wisconsin}
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage[normalem]{ulem}
+\usepackage{xcolor}
+\usepackage{anyfontsize}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{framed}
+\usepackage{listings}
+\usepackage{showexpl}
+\usepackage{xcolor}
+\usepackage{lipsum}
+
+\lstset{%
+basicstyle=\scriptsize\ttfamily, numbersep=2mm, numbers=left, numberstyle=\tiny, % number style
+breaklines=true,frame=single,framexleftmargin=0mm, xleftmargin=3mm,
+prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+backgroundcolor=\color{green!5},frameround=fttt,escapeinside=??,
+rulecolor=\color{red},
+morekeywords={% Give key words here                                         % keywords
+    maketitle},
+keywordstyle=\color[rgb]{0,0,1},                    % keywords
+        commentstyle=\color[rgb]{0.133,0.545,0.133},    % comments
+        stringstyle=\color[rgb]{0.627,0.126,0.941}  % strings
+%columns=fullflexible 
+}%
+
+\lstdefinelanguage{myTeX}{
+  language=TeX,
+  morekeywords={begin, frac, end, ref, item, label, hline, cite, author, title, year, bibliographystyle, bibliography},
+  morecomment=[l]{\%},
+  sensitive=true
+}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.arrows}
+\tikzset{
+    myarrow/.style={
+        draw,
+        fill=orange,
+        single arrow,
+        minimum height=4ex,
+        single arrow head extend=1ex
+    }
+}
+\tikzset{
+    mydoublearrow/.style={
+        draw,
+        fill=orange,
+        double arrow,
+        minimum height=10.5ex,
+        single arrow head extend=1ex
+    }
+}
+
+\newcommand{\arrowup}{%
+\tikz [baseline=-0.5ex]{\node [myarrow,rotate=90] {};}
+}
+\newcommand{\arrowdown}{%
+\tikz [baseline=-1ex]{\node [myarrow,rotate=-90] {};}
+}
+\newcommand{\arrowright}{%
+\tikz [baseline=-0.5ex]{\node [myarrow,rotate=0] {};}
+}
+\newcommand{\doublearrow}{%
+\tikz [baseline=-1ex]{\node [mydoublearrow,rotate=0] {};}
+}
+
+\begin{document}
+\newcommand*{\alphabet}{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}
+\newlength{\highlightheight}
+\newlength{\highlightdepth}
+\newlength{\highlightmargin}
+\setlength{\highlightmargin}{2pt}
+\settoheight{\highlightheight}{\alphabet}
+\settodepth{\highlightdepth}{\alphabet}
+\addtolength{\highlightheight}{\highlightmargin}
+\addtolength{\highlightdepth}{\highlightmargin}
+\addtolength{\highlightheight}{\highlightdepth}
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+\newcommand*{\Highlight}{\rlap{\textcolor{HighlightBackground}{\rule[-\highlightdepth]{\linewidth}{\highlightheight}}}}
+\setbeamertemplate{bibliography item}[text]
+\setbeamercolor{section in toc}{fg=white}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor*{bibliography entry title}{fg=black}
+%\setbeamerfont{section number projected}{size=\tiny}
+\setbeamerfont{section number projected}{size=\fontsize{6}{6}\selectfont}
+%\setbeamerfont{toc}{color=white}
+\setbeamercolor{section number projected}{bg=UWRed,fg=white}
+\hypersetup{linkcolor=white,urlcolor=white}
+
+\AtBeginSection{\frame{\sectionpage}}
+\defbeamertemplate{section page}{mine}[1][]{%
+  \begin{centering}
+    {\usebeamerfont{section name}\usebeamercolor[fg]{section name}#1}
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=12pt,center]{part title}
+      \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+\setbeamertemplate{section page}[mine]
+
+%TITLE PAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\LaTeX \, and Beamer}   
+\author{Elliott Biondo}
+\institute{University of Wisconsin - Madison}
+\date{March 27, 2015}
+\frame[plain]{\titlepage \addtocounter{framenumber}{-1}} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\LaTeX and Beamer}
+\LaTeX is a markup langauge used to create documents
+Beamer is a \LaTeX class used to make presentations.
+\begin{itemize}
+\item Every aspect of this presentation was created in \LaTeX/Beamer.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Why I use these tools}
+
+\begin{itemize}
+\item{Exacting control over every aspect of the document.}
+\item{Powerful math mode}
+\item{Automatic bibliography tool (Bib\TeX)}
+\item{Automatic handling of numbering and cross references to figures, tables, equations, citations.}
+\end{itemize}
+
+\pause
+``But I can do all of this in Microsoft Word $\dots$''
+
+\end{frame}
+
+\begin{frame}{Why I use these tools}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\LaTeX}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Hello World!}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+hello\_world.tex:
+\lstinputlisting[language=myTeX, frame=single]{examples/hello_world.tex}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/hello_world.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Let's make the font a little bigger...}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+hello\_world2.tex:
+\lstinputlisting[language=myTeX, frame=single]{examples/hello_world2.tex}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/hello_world2.pdf}}
+%\fbox{\includegraphics[trim={5cm 5cm 0cm 3cm},clip]{examples/hello_world2.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Some Basics}
+
+\begin{columns}[T]
+\column{0.52\textwidth}
+lists.tex:
+\lstinputlisting[language=myTeX, frame=single, firstline=6, lastline=12, firstnumber=6]{examples/lists.tex}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.44\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/lists.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Some Basics}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+lists2.tex:
+\lstinputlisting[language=myTeX, frame=single, firstline=6, lastline=15, firstnumber=6]{examples/lists2.tex}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/lists2.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Math}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+math.tex:
+\lstinputlisting[language=myTeX, frame=single, firstline=6, lastline=13, firstnumber=6]{examples/math.tex}
+Note that \texttt{\textbackslash label} works with equations, tables, figures, code listings, etc.
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/math.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Tables}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+table.tex:
+\lstinputlisting[language=myTeX, frame=single, firstline=7, lastline=14, firstnumber=7]{examples/table.tex}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/table.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{References}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+gravity.tex:
+\lstinputlisting[language=mytex, frame=single, firstline=6, lastline=10, firstnumber=6]{examples/gravity.tex}
+refs.bib:
+\lstinputlisting[language=mytex, frame=single, firstline=1, lastline=7, firstnumber=1]{examples/refs.bib}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/gravity.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Beamer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
