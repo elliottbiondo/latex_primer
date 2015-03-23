@@ -34,8 +34,6 @@ examples/hello_world2.pdf: examples/hello_world2.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/hello_world2.tex
 $(name).pdf: refs.bib $(TEX) $(PDF) $(PNG) examples/hello_world.pdf examples/hello_world2.pdf examples/lists.pdf examples/lists2.pdf examples/math.pdf examples/table.pdf examples/gravity.pdf examples/figure.pdf examples/beamer_hello.pdf examples/columns.pdf examples/blocks.pdf examples/listing.pdf
 	pdflatex ${name}.tex
-	bibtex ${name}
-	pdflatex ${name}.tex
 	pdflatex ${name}.tex
 clean:
 	find . -type f -name '*.aux' -delete
