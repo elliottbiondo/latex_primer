@@ -31,7 +31,7 @@ keywordstyle=\color[rgb]{0,0,1},                    % keywords
 
 \lstdefinelanguage{myTeX}{
   language=TeX,
-  morekeywords={begin, frac, end, ref, item, label, hline, cite, author, title, year, bibliographystyle, bibliography, column, documentclass, usetheme, @book},
+  morekeywords={begin, frac, end, ref, item, label, hline, cite, author, title, year, bibliographystyle, bibliography, column, documentclass, usetheme, @book, lstset},
   morecomment=[l]{\%},
   sensitive=true
 }
@@ -262,6 +262,23 @@ table.tex:
 \vspace{0.5cm}
 \end{columns}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Code listings}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+listings.tex:
+\lstinputlisting[language=myTeX, frame=single, firstline=9, lastline=15, firstnumber=9]{examples/listing.tex}
+(with \texttt{\textbackslash usepackage\{listings\}}  in the preamble)
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/listing.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
@@ -313,6 +330,22 @@ columns.tex:
 \arrowright
 \column{0.45\textwidth}
 \fbox{\includegraphics[width=0.9\textwidth]{examples/columns.pdf}}
+\vspace{0.5cm}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Blocks}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+blocks.tex:
+\lstinputlisting[language=myTeX, frame=single, firstline=5, lastline=21, firstnumber=5]{examples/blocks.tex}
+\column{0.05\textwidth}
+\vspace{3cm}
+\arrowright
+\column{0.45\textwidth}
+\fbox{\includegraphics[width=0.9\textwidth]{examples/blocks.pdf}}
 \vspace{0.5cm}
 \end{columns}
 \end{frame}

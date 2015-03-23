@@ -3,10 +3,14 @@ TEX := $(shell find . -name '*.tex')
 PDF := $(shell find . -name '*.pdf')
 PNG := $(shell find . -name '*.png')
 all: $(name).pdf
+examples/blocks.pdf: examples/blocks.tex
+	pdflatex -aux-directory=examples -output-directory=examples examples/blocks.tex
 examples/columns.pdf: examples/columns.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/columns.tex
 examples/beamer_hello.pdf: examples/beamer_hello.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/beamer_hello.tex
+examples/listing.pdf: examples/listing.tex
+	pdflatex -aux-directory=examples -output-directory=examples examples/listing.tex
 examples/gravity.pdf: examples/gravity.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/gravity.tex
 	cd examples; bibtex gravity
@@ -28,7 +32,7 @@ examples/hello_world.pdf: examples/hello_world.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/hello_world.tex
 examples/hello_world2.pdf: examples/hello_world2.tex
 	pdflatex -aux-directory=examples -output-directory=examples examples/hello_world2.tex
-$(name).pdf: refs.bib $(TEX) $(PDF) $(PNG) examples/hello_world.pdf examples/hello_world2.pdf examples/lists.pdf examples/lists2.pdf examples/math.pdf examples/table.pdf examples/gravity.pdf examples/figure.pdf examples/beamer_hello.pdf examples/columns.pdf
+$(name).pdf: refs.bib $(TEX) $(PDF) $(PNG) examples/hello_world.pdf examples/hello_world2.pdf examples/lists.pdf examples/lists2.pdf examples/math.pdf examples/table.pdf examples/gravity.pdf examples/figure.pdf examples/beamer_hello.pdf examples/columns.pdf examples/blocks.pdf examples/listing.pdf
 	pdflatex ${name}.tex
 	bibtex ${name}
 	pdflatex ${name}.tex
