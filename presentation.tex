@@ -14,6 +14,8 @@
 \usepackage{showexpl}
 \usepackage{xcolor}
 \usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{subfigure}
 
 \lstset{%
 basicstyle=\scriptsize\ttfamily, numbersep=2mm, numbers=left, numberstyle=\tiny, % number style
@@ -38,6 +40,7 @@ keywordstyle=\color[rgb]{0,0,1},                    % keywords
 
 \usepackage{tikz}
 \usetikzlibrary{shapes.arrows}
+\usetikzlibrary{positioning}
 \tikzset{
     myarrow/.style={
         draw,
@@ -119,9 +122,9 @@ keywordstyle=\color[rgb]{0,0,1},                    % keywords
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{\LaTeX and Beamer}
-\LaTeX is a markup langauge used to create documents
-Beamer is a \LaTeX class used to make presentations.
 \begin{itemize}
+\item \LaTeX $\,$ is a markup langauge used to create documents
+\item Beamer is a \LaTeX $\,$ class used to make presentations.
 \item Every aspect of this presentation was created in \LaTeX/Beamer.
 \end{itemize}
 \end{frame}
@@ -133,15 +136,24 @@ Beamer is a \LaTeX class used to make presentations.
 \item{Powerful math mode}
 \item{Automatic bibliography tool (Bib\TeX)}
 \item{Automatic handling of numbering and cross references to figures, tables, equations, citations.}
+\item{Everything is text-based}
+\begin{itemize}
+\item{facilitates version control,}
+\item{I can use my favorite editor.}
 \end{itemize}
-
-\pause
-``But I can do all of this in Microsoft Word $\dots$''
-
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Why I use these tools}
+\begin{frame}{Version Control}
+When you use:
+\begin{itemize}
+\item \LaTeX/Beamer for typesetting,
+\item MatPlotLib/GNUPlot for graphs,
+\item GraphViz for flowcharts,
+\item TikZ for fancy figures,
+\end{itemize}
 
+you can version control every aspect of a document.\\
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -350,26 +362,188 @@ Note that \texttt{\textbackslash label} works with equations, tables, figures, c
 \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]
-\frametitle{Pauses}
-Hello
-\pause
-Goodbye
-\end{frame}
 \begin{frame}[plain]
 \centerline{Okay, you get the the picture with the syntax.}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Other Stuff}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Cool Packages}
+\begin{frame}[fragile]
+\frametitle{Pauses}
 
-\begin{frame}[plain]
-\frametitle{TikZ}
+\begin{itemize}
+\item{Spoon}
+\pause
+\item{Feed}
+\pause
+\item{Your}
+\pause
+\item{Audience}
+\pause
+\item Just add \texttt{\textbackslash pause}.
+\pause
+\begin{itemize}
+\item plays nicely with most features in Beamer.
+\pause
+\item notice that page number has not incremented.
+\end{itemize}
+\end{itemize}
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Subfigures}
+
+\begin{figure}[htb]
+\subfigure[Sheep uno]{
+\includegraphics[width=2.3cm]{examples/sheep.jpg}
+\label{subfig1}
+}
+\hspace{0.2cm}
+\subfigure[Sheep dos]{
+\includegraphics[width=2.3cm]{examples/sheep.jpg}
+\label{subfig2}
+}
+\hspace{0.2cm}
+\subfigure[Sheep tres]{
+\includegraphics[width=2.3cm]{examples/sheep.jpg}
+\label{subfig3}
+}
+\hspace{0.2cm}
+\subfigure[\footnotesize Sheep quatro]{
+\includegraphics[width=2.3cm]{examples/sheep.jpg}
+\label{subfig4}
+}
+
+\label{myfigure}
+\caption{Caption of all sheep.}
 
 
+Consider the sheep in Figure \ref{subfig2}...
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[plain]
+\frametitle{TikZ Package}
+\begin{itemize}
+\item My new favorite thing
+\item \href{http://www.texample.net/tikz/examples/3d-cone/}{3D Cone by Gene Ressler \color{blue}{[\uline{Link}]}}
+\end{itemize}
+% Author: Gene Ressler. Adapted to TikZ by Kjell Magne Fauske.
+% See http://www.frontiernet.net/~eugene.ressler/ for more details
+\begin{figure}
+\centering
+\begin{tikzpicture}[join=round]
+    \tikzstyle{conefill} = [fill=blue!20,fill opacity=0.8]
+    \tikzstyle{ann} = [fill=white,font=\footnotesize,inner sep=1pt]
+    \tikzstyle{ghostfill} = [fill=white]
+         \tikzstyle{ghostdraw} = [draw=black!50]
+    \filldraw[conefill](-.775,1.922)--(-1.162,.283)--(-.274,.5)
+                        --(-.183,2.067)--cycle;
+    \filldraw[conefill](-.183,2.067)--(-.274,.5)--(.775,.424)
+                        --(.516,2.016)--cycle;
+    \filldraw[conefill](.516,2.016)--(.775,.424)--(1.369,.1)
+                        --(.913,1.8)--cycle;
+    \filldraw[conefill](-.913,1.667)--(-1.369,-.1)--(-1.162,.283)
+                        --(-.775,1.922)--cycle;
+    \draw(1.461,.107)--(1.734,.127);
+    \draw[arrows=<->](1.643,1.853)--(1.643,.12);
+    \filldraw[conefill](.913,1.8)--(1.369,.1)--(1.162,-.283)
+                        --(.775,1.545)--cycle;
+    \draw[arrows=->,line width=.4pt](.274,-.5)--(0,0)--(0,2.86);
+    \draw[arrows=-,line width=.4pt](0,0)--(-1.369,-.1);
+    \draw[arrows=->,line width=.4pt](-1.369,-.1)--(-2.1,-.153);
+    \filldraw[conefill](-.516,1.45)--(-.775,-.424)--(-1.369,-.1)
+                        --(-.913,1.667)--cycle;
+    \draw(-1.369,.073)--(-1.369,2.76);
+    \draw(1.004,1.807)--(1.734,1.86);
+    \filldraw[conefill](.775,1.545)--(1.162,-.283)--(.274,-.5)
+                        --(.183,1.4)--cycle;
+    \draw[arrows=<->](0,2.34)--(-.913,2.273);
+    \draw(-.913,1.84)--(-.913,2.447);
+    \draw[arrows=<->](0,2.687)--(-1.369,2.587);
+    \filldraw[conefill](.183,1.4)--(.274,-.5)--(-.775,-.424)
+                        --(-.516,1.45)--cycle;
+    \draw[arrows=<-,line width=.4pt](.42,-.767)--(.274,-.5);
+    \node[ann] at (-.456,2.307) {$r_0$};
+    \node[ann] at (-.685,2.637) {$r_1$};
+    \node[ann] at (1.643,.987) {$h$};
+    \path (.42,-.767) node[below] {$x$}
+        (0,2.86) node[above] {$y$}
+        (-2.1,-.153) node[left] {$z$};
+    % Second version of the cone
+    \begin{scope}[xshift=3.5cm]
+    \filldraw[ghostdraw,ghostfill](-.775,1.922)--(-1.162,.283)--(-.274,.5)
+                                   --(-.183,2.067)--cycle;
+    \filldraw[ghostdraw,ghostfill](-.183,2.067)--(-.274,.5)--(.775,.424) 
+                                   --(.516,2.016)--cycle;
+    \filldraw[ghostdraw,ghostfill](.516,2.016)--(.775,.424)--(1.369,.1)
+                                   --(.913,1.8)--cycle;
+    \filldraw[ghostdraw,ghostfill](-.913,1.667)--(-1.369,-.1)--(-1.162,.283)
+                                   --(-.775,1.922)--cycle;
+    \filldraw[ghostdraw,ghostfill](.913,1.8)--(1.369,.1)--(1.162,-.283)
+                                   --(.775,1.545)--cycle;
+    \filldraw[ghostdraw,ghostfill](-.516,1.45)--(-.775,-.424)--(-1.369,-.1)
+                                   --(-.913,1.667)--cycle;
+    \filldraw[ghostdraw,ghostfill](.775,1.545)--(1.162,-.283)--(.274,-.5)
+                                   --(.183,1.4)--cycle;
+    \filldraw[fill=red,fill opacity=0.5](-.516,1.45)--(-.775,-.424)--(.274,-.5)
+                                         --(.183,1.4)--cycle;
+    \fill(-.775,-.424) circle (2pt);
+    \fill(.274,-.5) circle (2pt);
+    \fill(-.516,1.45) circle (2pt);
+    \fill(.183,1.4) circle (2pt);
+    \path[font=\footnotesize]
+            (.913,1.8) node[right] {$i\hbox{$=$}0$}
+            (1.369,.1) node[right] {$i\hbox{$=$}1$};
+    \path[font=\footnotesize]
+            (-.645,.513) node[left] {$j$}
+            (.228,.45) node[right] {$j\hbox{$+$}1$};
+    \draw (-.209,.482)+(-60:.25) [yscale=1.3,->] arc(-60:240:.25);
+    \fill[black,font=\footnotesize]
+                    (-.516,1.45) node [above] {$P_{00}$}
+                    (-.775,-.424) node [below] {$P_{10}$}
+                    (.183,1.4) node [above] {$P_{01}$}
+                    (.274,-.5) node [below] {$P_{11}$};
+    \end{scope}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Getting Started}
+
+Latex:
+\begin{itemize}
+\item{Online tools}
+\begin{itemize}
+\item \href{https://www.overleaf.com/}{Overleaf \color{blue}{[\uline{Link}]}}
+\item \href{https://www.sharelatex.com/}{ShareLaTeX \color{blue}{[\uline{Link}]}}
+\end{itemize}
+
+\item{GUI's}
+\begin{itemize}
+\item \href{http://www.lyx.org/}{LyX \color{blue}{[\uline{link}]}}
+\item \href{http://www.xm1math.net/texmaker/}{Texmaker \color{blue}{[\uline{Link}]}}
+\end{itemize}
+
+\item{Command-line}
+\begin{itemize}
+\item \texttt{>> sudo apt-get install texlive-full}
+\item \texttt{>> pdflatex mydoc.tex}
+\end{itemize}
+
+\end{itemize}
+Beamer:
+\begin{itemize}
+\item \href{https://github.com/travitch/uw-beamer-template}{UW Beamer Template \color{blue}{[\uline{Link}]}}
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Questions?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
