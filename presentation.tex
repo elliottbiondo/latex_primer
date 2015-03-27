@@ -16,6 +16,7 @@
 \usepackage{lipsum}
 \usepackage{hyperref}
 \usepackage{subfigure}
+\usepackage{animate,media9,movie15}
 
 \lstset{%
 basicstyle=\scriptsize\ttfamily, numbersep=2mm, numbers=left, numberstyle=\tiny, % number style
@@ -41,6 +42,7 @@ keywordstyle=\color[rgb]{0,0,1},                    % keywords
 \usepackage{tikz}
 \usetikzlibrary{shapes.arrows}
 \usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathreplacing}
 \tikzset{
     myarrow/.style={
         draw,
@@ -99,7 +101,8 @@ keywordstyle=\color[rgb]{0,0,1},                    % keywords
 \setbeamercolor{section number projected}{bg=UWRed,fg=white}
 \hypersetup{linkcolor=white,urlcolor=white}
 
-\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSection{\begin{frame}[plain] \sectionpage \end{frame}}
+
 \defbeamertemplate{section page}{mine}[1][]{%
   \begin{centering}
     {\usebeamerfont{section name}\usebeamercolor[fg]{section name}#1}
@@ -108,8 +111,11 @@ keywordstyle=\color[rgb]{0,0,1},                    % keywords
       \usebeamerfont{section title}\insertsection\par
     \end{beamercolorbox}
   \end{centering}
+\addtocounter{framenumber}{-1}
 }
+
 \setbeamertemplate{section page}[mine]
+
 
 %TITLE PAGE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -123,7 +129,7 @@ keywordstyle=\color[rgb]{0,0,1},                    % keywords
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{\LaTeX and Beamer}
 \begin{itemize}
-\item \LaTeX $\,$ is a markup langauge used to create documents
+\item \LaTeX $\,$ is a markup language used to create documents.
 \item Beamer is a \LaTeX $\,$ class used to make presentations.
 \item Every aspect of this presentation was created in \LaTeX/Beamer.
 \end{itemize}
@@ -133,8 +139,8 @@ keywordstyle=\color[rgb]{0,0,1},                    % keywords
 
 \begin{itemize}
 \item{Exacting control over every aspect of the document.}
-\item{Powerful math mode}
-\item{Automatic bibliography tool (Bib\TeX)}
+\item{Powerful math mode.}
+\item{Automatic bibliography tool (Bib\TeX).}
 \item{Automatic handling of numbering and cross references to figures, tables, equations, citations.}
 \item{Everything is text-based}
 \begin{itemize}
@@ -295,6 +301,7 @@ Note that \texttt{\textbackslash label} works with equations, tables, figures, c
 \end{block}
 \begin{block}{\centering refs.bib}
 \lstinputlisting[language=mytex, frame=single, firstline=1, lastline=7, firstnumber=1]{examples/refs.bib}
+Note: need to run pdflatex {\bf and} bibtex.
 \end{block}
 \column{0.05\textwidth}
 \arrowright
@@ -310,7 +317,7 @@ Note that \texttt{\textbackslash label} works with equations, tables, figures, c
 \frametitle{Beamer}
 
 \begin{itemize}
-\item Beamer is just a \LaTeX document class for making presentations.
+\item Beamer is just a \LaTeX \, document class for making presentations.
 \item Everything mentioned so far also applies to Beamer!
 \end{itemize}
 
@@ -366,7 +373,7 @@ Note that \texttt{\textbackslash label} works with equations, tables, figures, c
 \centerline{Okay, you get the the picture with the syntax.}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Other Stuff}
+\section{More}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{Pauses}
@@ -418,15 +425,26 @@ Note that \texttt{\textbackslash label} works with equations, tables, figures, c
 \label{myfigure}
 \caption{Caption of all sheep.}
 
-
 Consider the sheep in Figure \ref{subfig2}...
 \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \begin{frame}[plain]
-\frametitle{TikZ Package}
+\frametitle{movie15 package}
+\begin{figure}
+\centering
+  \includemovie[
+    poster,
+    autoplay,
+    externalviewer,
+    inline=false,
+    text={\small(movie)}
+  ]{6cm}{6cm}{pretty_movie.mp4}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+\frametitle{TikZ package}
 \begin{itemize}
 \item My new favorite thing
 \item \href{http://www.texample.net/tikz/examples/3d-cone/}{3D Cone by Gene Ressler \color{blue}{[\uline{Link}]}}
@@ -510,6 +528,54 @@ Consider the sheep in Figure \ref{subfig2}...
     \end{scope}
 \end{tikzpicture}
 \end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{TikZ works nicely with pauses:}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[scale=1.2]
+        \draw[thick] (0,0) -- (5,0) -- (5,5) -- (0,5) -- (0,0);
+    \draw (2.5, 5.5) node {mesh volume element $k$};
+    \draw [decorate,decoration={brace,amplitude=10pt, mirror}] (0.1,-0.1) -- (4.9, -0.1) node [midway,yshift=-0.6cm] {$l_{k}$};
+    \pause
+    \filldraw[fill=orange, opacity=0.2] (0,0) -- (2.5cm,0mm) arc (-50:50:2cm) arc (50:-41:-1.35cm) -- (2.36,5) --(0,5);
+    \filldraw[fill=blue, opacity=0.2] (5,0) -- (2.5, 0) arc (-50:50:2cm) arc (50:-41:-1.35cm) -- (2.36,5) --(5,5);
+    \draw[color=orange] (1,4) node {cell $a$};
+    \draw[color=blue] (4,4) node {cell $b$};
+    \pause
+    \pause
+    \draw[thick, ->, color=red] (0,1) -- (5,1) node[midway,above] {ray 1};
+    \draw [decorate,decoration={brace,amplitude=10pt, mirror}, color=orange] (0.1,0.9) -- (3.05,0.9) node [orange,midway,yshift=-0.6cm] {$l_{1,a}$};
+    \draw [decorate,decoration={brace,amplitude=10pt, mirror}, color=blue] (3.15,0.9) -- (4.9,0.9) node [blue,midway,yshift=-0.6cm] {$l_{1,b}$};
+    \pause
+    \draw[thick, ->, color=red] (0,3.5) -- (5,3.5) node[midway,above] {ray 2};
+    \draw [decorate,decoration={brace,amplitude=10pt, mirror}, color=orange] (0.1,3.4) -- (2.15,3.4) node [orange,midway,yshift=-0.6cm] {$l_{2,a}$};
+    \draw [decorate,decoration={brace,amplitude=10pt, mirror}, color=blue] (2.25,3.4) -- (4.9,3.4) node [blue,midway,yshift=-0.6cm] {$l_{2,b}$};
+    \pause
+    \draw[thick, ->, color=red] (0,2.5) -- (5,2.5) node[midway,above] {ray 3};
+    \draw [decorate,decoration={brace,amplitude=10pt, mirror}, color=orange] (0.1,2.4) -- (2.95, 2.4) node [orange,midway,yshift=-0.6cm] {$l_{2,a}$};
+    \draw [decorate,decoration={brace,amplitude=10pt, mirror}, color=blue] (3.05,2.4) -- (4.9,2.4) node [blue,midway,yshift=-0.6cm] {$l_{2,b}$};
+    \onslide<1->
+\end{tikzpicture}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The downsides}
+
+\begin{itemize}
+\item Steep learning curve.
+\begin{itemize}
+\item You have to be willing to Google/StackOverflow things.
+\item Until you are proficient, making documents takes much longer than using the alternatives.
+\item You will occasionally have to ``hack'' things if you don't know how to do it the right way.
+\end{itemize}
+\item Commenting on .pdfs is inferior to the MS Word comments + accept/reject changes workflow.
+\end{itemize}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
